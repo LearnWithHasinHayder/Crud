@@ -3,6 +3,14 @@ require_once "inc/functions.php";
 $info  = '';
 $task  = $_GET['task'] ?? 'report';
 $error = $_GET['error'] ?? '0';
+
+if('delete'==$task){
+	$id = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_STRING );
+	if($id>0){
+	    deleteStudent($id);
+		header( 'location: /crud/index.php?task=report' );
+    }
+}
 if ( 'seed' == $task ) {
     seed();
     $info = "Seeding is complete";
@@ -125,5 +133,6 @@ if ( isset( $_POST['submit'] ) ) {
     endif;
     ?>
 </div>
+<script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
